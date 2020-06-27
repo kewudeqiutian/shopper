@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -26,11 +25,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
+    Shopper instance = Shopper.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i("*****************",instance.getShopName());
 
         TextView textView = findViewById(R.id.main_textview);
         ListView listView = findViewById(R.id.listview1);
@@ -72,8 +74,9 @@ public class MainActivity extends AppCompatActivity {
             public List<List<String>> call() throws Exception {
                 List<List<String>> list = new LinkedList<>();
 
+
                 String sql = "select username,time,ds,price from dishes where shopname = '"
-                        + Shopper.getInstance().shopName + "'";
+                        + "鸡公煲" + "'";
                 ResultSet resultSet = JDBCUtils.query(sql);
                 //int c = 0;
                 while(resultSet.next()){
@@ -87,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     aList.add(dishes);
                     aList.add(price);
                     list.add(aList);
-                    Log.i("*********8",aList.toString());
                     //c++;
                 }
                 JDBCUtils.close();
@@ -100,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<>();
     }
 
     public static Map<String,String> splitStr(String str){
