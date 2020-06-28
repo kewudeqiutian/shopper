@@ -38,7 +38,7 @@ public class Shopper {
         this.username = username;
     }
 
-    String shopName = "";
-    String username;
+   public String shopName;
+   public String username;
 
 }

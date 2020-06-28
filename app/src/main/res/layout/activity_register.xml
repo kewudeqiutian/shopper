@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="130dp"
             android:gravity="center_horizontal">
 
             <ImageView
@@ -32,7 +32,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/iv_logo"
                 android:gravity="center_vertical"
-                android:text="@string/login_title"
+                android:text="@string/register_title"
                 android:textColor="#ffffff"
                 android:textSize="25sp" />
         </RelativeLayout>

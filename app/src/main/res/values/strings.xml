@@ -3,7 +3,8 @@
     <string name="tab_menu_alert">发现</string>
     <string name="tab_menu_profile">订单</string>
     <string name="tab_menu_setting">我的</string>
-    <string name="login_title">外卖点餐</string>
+    <string name="login_title">商家登陆</string>
+    <string name="register_title">商家注册</string>
     <string name="hint_usename">用户名:</string>
     <string name="hint_password">密码:</string>
     <string name="copyright_information">登陆</string>

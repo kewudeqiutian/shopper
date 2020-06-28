@@ -1,6 +1,7 @@
 package com.example.shopper;
 
 import android.os.Bundle;
+import android.os.UserManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,19 +26,23 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
-    Shopper instance = Shopper.getInstance();
+    private UserInfo info =UserInfo.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.i("*****************",instance.getShopName());
+
 
         TextView textView = findViewById(R.id.main_textview);
         ListView listView = findViewById(R.id.listview1);
         Button button = findViewById(R.id.main_button);
+        //Shopper instance = Shopper.getInstance();
+        //Log.v("!!!!!!!!",instance.getUsername());
+        //Log.v("*****************",instance.getShopName());
 
+        Log.v("!!!!!!!!!",info.getShopname());
         List<String> listStr = new LinkedList<>();
         int count = 0;
         List<List<String>> lists = getDishes();
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 String sql = "select username,time,ds,price from dishes where shopname = '"
-                        + "鸡公煲" + "'";
+                        + info.getShopname() + "'";
                 ResultSet resultSet = JDBCUtils.query(sql);
                 //int c = 0;
                 while(resultSet.next()){
