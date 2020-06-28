@@ -27,48 +27,29 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     private UserInfo info =UserInfo.getInstance();
+    ListView listView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        TextView textView = findViewById(R.id.main_textview);
-        ListView listView = findViewById(R.id.listview1);
+        listView = findViewById(R.id.listview1);
         Button button = findViewById(R.id.main_button);
-        //Shopper instance = Shopper.getInstance();
-        //Log.v("!!!!!!!!",instance.getUsername());
-        //Log.v("*****************",instance.getShopName());
-
-        Log.v("!!!!!!!!!",info.getShopname());
-        List<String> listStr = new LinkedList<>();
-        int count = 0;
-        List<List<String>> lists = getDishes();
-        for(int i = 0;i < lists.size();i++){
-            List<String> list = lists.get(i);
-            Map<String,String> map = splitStr(list.get(2));
-            Set<Map.Entry<String, String>> entrySet = map.entrySet();
-            for (Map.Entry entry:entrySet){
-                String s = list.get(0) + "在" + list.get(1) +  "点了" + entry.getValue() +"份" + entry.getKey();
-                listStr.add(s);
-            }
-
-//            count = count + Integer.parseInt(list.get(2));
-        }
-
-        String[] name = listStr.toArray(new String[]{});
-
-        textView.setText("共计消费" + count + "元");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,name);
-        listView.setAdapter(adapter);
-
+        Button button1 = findViewById(R.id.main_button2);
+        display(listView);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO
                 Toast.makeText(MainActivity.this,"已成功接单，骑手正在火速赶来",Toast.LENGTH_SHORT).show();
+            }
+        });
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display(listView);
+                Toast.makeText(MainActivity.this,"订单刷新成功！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -119,9 +100,30 @@ public class MainActivity extends AppCompatActivity {
         char[] chars = m.replaceAll("").trim().toCharArray();
         Map<String,String> map = new HashMap<>();
         for (int i = 0;i < charStr.length;i++){
-            Log.i("*****************",map.toString());
-            map.put(charStr[i], String.valueOf(chars[i]));
+            String s = String.valueOf(chars[i]);
+            if (!s.equals("0")){
+                map.put(charStr[i], s);
+            }
         }
         return map;
+    }
+    public void display(ListView listView){
+        List<String> listStr = new LinkedList<>();
+        List<List<String>> lists = getDishes();
+
+        for(int i = 0;i < lists.size();i++){
+            List<String> list = lists.get(i);
+            Map<String,String> map = splitStr(list.get(2));
+            Set<Map.Entry<String, String>> entrySet = map.entrySet();
+            for (Map.Entry<String,String> entry:entrySet){
+                String s = list.get(0) + "在" + list.get(1) +  "点了" + entry.getValue() +"份" + entry.getKey();
+                listStr.add(s);
+            }
+
+            String[] name = listStr.toArray(new String[]{});
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,R.layout.list,name);
+            listView.setAdapter(adapter);
+        }
     }
 }

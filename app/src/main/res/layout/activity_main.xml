@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/bg">
 
     <TextView
         android:id="@+id/textView"
@@ -17,30 +18,29 @@
 
     <ListView
         android:id="@+id/listview1"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#FFFFFF"
-        />
-
-    <TextView
-        android:id="@+id/main_textview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="520dp"
-        android:layout_marginLeft="270dp"
-        android:text=".."/>
+        android:layout_height="393dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rectangle" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/main_button"
         android:text="确认接单"
-        android:layout_marginLeft="250dp"
+        android:layout_marginStart="230dp"
         android:layout_marginTop="545dp"
         android:background="@drawable/bluebutton"/>
+    <Button
+        android:id="@+id/main_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="刷新订单"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="545dp"
+        android:background="@drawable/bluebutton1"/>
 
 
 </RelativeLayout>
